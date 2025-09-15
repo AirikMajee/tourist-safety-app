@@ -209,8 +209,5 @@ npx hardhat test
 
 ## 📜 License
 
-MIT License © 2025 \ Airik Majee
+MIT License © 2025 Airik Majee
 
----
-
-👉 Do you want me to also generate a **short “Hackathon README” version** (one-pager with screenshots + demo steps), so you can paste that into your PPT repo link for judges?
