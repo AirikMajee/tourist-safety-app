@@ -225,6 +225,18 @@ backend:
         agent: "testing"
         comment: "✅ VERIFIED: Northeast location data working perfectly. Retrieved data for all 8 states: Assam, Meghalaya, Manipur, Mizoram, Nagaland, Tripura, Arunachal Pradesh, Sikkim with proper emergency contacts and risk zones."
 
+  - task: "Location History API"
+    implemented: true
+    working: false
+    file: "server.py"
+    stuck_count: 1
+    priority: "low"
+    needs_retesting: false
+    status_history:
+      - working: false
+        agent: "testing"
+        comment: "Minor: Location History API (GET /api/location/history/{tourist_id}) has MongoDB ObjectId serialization error causing HTTP 500. Core location tracking works fine, only history retrieval affected. Error: 'ObjectId' object is not iterable in JSON serialization."
+
 frontend:
   - task: "Tourist Registration Interface"
     implemented: true
