@@ -1,34 +1,350 @@
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+/* Custom styles for the Tourist Safety App */
+
+.App {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
+/* Hero Section Styles */
+.hero-section {
+  position: relative;
 }
 
-.App-header {
-    background-color: #0f0f10;
-    min-height: 100vh;
-    display: flex;
+.hero-image-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-image-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(45deg, rgba(59, 130, 246, 0.1), rgba(16, 185, 129, 0.1));
+  pointer-events: none;
+}
+
+/* Feature Cards */
+.feature-card {
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.feature-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+/* Dashboard Grid */
+.dashboard-grid {
+  gap: 1.5rem;
+}
+
+@media (min-width: 1024px) {
+  .dashboard-grid {
+    gap: 2rem;
+  }
+}
+
+/* Interactive Risk Map */
+.risk-map .map-container {
+  background: linear-gradient(135deg, #e6fffa 0%, #e0f2fe 100%);
+  position: relative;
+}
+
+.risk-map .map-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    radial-gradient(circle at 25% 25%, rgba(34, 197, 94, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.1) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Safety Score Animations */
+.safety-score .score-display {
+  position: relative;
+  overflow: hidden;
+}
+
+.safety-score .score-display::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transform: rotate(45deg);
+  animation: shimmer 3s infinite;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+  100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+}
+
+/* SOS Button Styles */
+.sos-emergency button {
+  position: relative;
+  overflow: hidden;
+}
+
+.sos-emergency button:not(:disabled):hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 25px rgba(220, 38, 38, 0.3);
+}
+
+.sos-emergency button:active {
+  transform: scale(0.98);
+}
+
+/* Emergency contacts hover effects */
+.sos-emergency a {
+  transition: all 0.2s ease-in-out;
+}
+
+.sos-emergency a:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Advisory Cards */
+.advisories .space-y-4 > div {
+  transition: all 0.2s ease-in-out;
+}
+
+.advisories .space-y-4 > div:hover {
+  transform: translateX(4px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+/* Form Styles */
+.registration-form input,
+.registration-form select,
+.registration-form textarea {
+  transition: all 0.2s ease-in-out;
+}
+
+.registration-form input:focus,
+.registration-form select:focus,
+.registration-form textarea:focus {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);
+}
+
+/* Crowd Reporting Form */
+.crowd-reporting form {
+  position: relative;
+}
+
+.crowd-reporting textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Navigation Styles */
+.nav-bar {
+  backdrop-filter: blur(10px);
+  background: rgba(255, 255, 255, 0.95);
+}
+
+.nav-links button {
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-links button:hover {
+  transform: translateY(-1px);
+}
+
+/* User Info Badge */
+.user-info .safety-score {
+  animation: pulse-glow 2s infinite;
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 5px rgba(34, 197, 94, 0.3);
+  }
+  50% { 
+    box-shadow: 0 0 15px rgba(34, 197, 94, 0.5);
+  }
+}
+
+/* Location markers on risk map */
+.risk-map .map-container > div[title] {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.risk-map .map-container > div[title]:hover {
+  transform: scale(1.1);
+  z-index: 10;
+}
+
+/* Loading States */
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Responsive Design Improvements */
+@media (max-width: 768px) {
+  .nav-bar .container {
     flex-direction: column;
-    align-items: center;
+    gap: 1rem;
+  }
+  
+  .nav-links {
+    width: 100%;
     justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
+  }
+  
+  .user-info {
+    width: 100%;
+    justify-content: center;
+  }
+  
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .hero-content {
+    padding: 1.5rem;
+  }
+  
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
-.App-link {
-    color: #61dafb;
+/* Accessibility Improvements */
+.focus-visible {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
 }
 
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .feature-card {
+    border: 2px solid currentColor;
+  }
+  
+  .safety-score .score-display {
+    border-width: 3px;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .hero-image-container::after,
+  .safety-score .score-display::before {
+    display: none;
+  }
+}
+
+/* Dark mode support (for future implementation) */
+@media (prefers-color-scheme: dark) {
+  .App {
+    --bg-primary: #1f2937;
+    --bg-secondary: #374151;
+    --text-primary: #f9fafb;
+    --text-secondary: #d1d5db;
+  }
+}
+
+/* Print styles */
+@media print {
+  .nav-bar,
+  .footer,
+  .sos-emergency button {
+    display: none;
+  }
+  
+  .App {
+    background: white;
+  }
+  
+  .hero-section,
+  .dashboard-grid > div {
+    break-inside: avoid;
+  }
+}
+
+/* Custom scrollbar */
+.advisories .space-y-4,
+.risk-map .space-y-2 {
+  scrollbar-width: thin;
+  scrollbar-color: #cbd5e1 #f1f5f9;
+}
+
+.advisories .space-y-4::-webkit-scrollbar,
+.risk-map .space-y-2::-webkit-scrollbar {
+  width: 6px;
+}
+
+.advisories .space-y-4::-webkit-scrollbar-track,
+.risk-map .space-y-2::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-radius: 3px;
+}
+
+.advisories .space-y-4::-webkit-scrollbar-thumb,
+.risk-map .space-y-2::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+.advisories .space-y-4::-webkit-scrollbar-thumb:hover,
+.risk-map .space-y-2::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Tooltip styles */
+[title] {
+  position: relative;
+}
+
+[title]:hover::after {
+  content: attr(title);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.8);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 0.25rem;
+  font-size: 0.75rem;
+  white-space: nowrap;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateX(-50%) translateY(4px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
 }
