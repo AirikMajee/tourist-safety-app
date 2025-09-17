@@ -89,7 +89,7 @@ tourist-safety-app/
 ### 1️⃣ Clone Repo
 
 ```bash
-git clone https://github.com/<your-username>/tourist-safety-app.git
+git clone https://github.com/<AirikMajee>/tourist-safety-app.git
 cd tourist-safety-app
 ```
 
